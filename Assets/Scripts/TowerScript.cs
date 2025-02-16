@@ -4,7 +4,7 @@ public class TowerScript : MonoBehaviour
 {
     private Camera mainCamera;
     private Vector3 offset;
-    private bool isDragging = false, beenPlaced = false;
+    private bool isDragging = false, beenPlaced = false, hoveringOver = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,7 +14,7 @@ public class TowerScript : MonoBehaviour
 
     void Update()
     {
-        if (isDragging)
+        if (isDragging)     //Moving the tower using the mouse
         {
             // Update the position of the object based on mouse movement
             Vector3 mousePosition = Input.mousePosition;
@@ -27,26 +27,48 @@ public class TowerScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!beenPlaced)
+        if (!beenPlaced)    //When tower is instantiated from tower spawn
         {
             isDragging = true;
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = mainCamera.WorldToScreenPoint(transform.position).z;
             offset = transform.position - mainCamera.ScreenToWorldPoint(mousePosition);
         }
+        else
+        {
+            hoveringOver = true;
+            Debug.Log("Tower is placed.");
+        }
         
+    }
+
+    private void OnMouseExit()
+    {
+        Transform textBox = transform.GetChild(0);
+        if (textBox.gameObject.activeSelf)
+        {
+            textBox.gameObject.SetActive(false);
+        }
     }
 
     private void OnMouseDown()
     {
-        Debug.Log("Mouse is down.");
-        isDragging = false;
-        beenPlaced = true;
+        if (isDragging)     //Placing the tower down into the scene
+        {
+            isDragging = false;
+            beenPlaced = true;
+        }
+        if (hoveringOver)   //Hovering over tower over stats (information)
+        {
+            Transform textBox = transform.GetChild(0);
+
+            textBox.gameObject.SetActive(true);
+            Debug.Log("Tower is selected");
+        }
     }
 
     private void OnMouseUp()
     {
-        Debug.Log("Mouse is up.");
         // Vector3 mousePosition = Input.mousePosition;
         // Vector3 worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
         // mousePosition.z = 0;
