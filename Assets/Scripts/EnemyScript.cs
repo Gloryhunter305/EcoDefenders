@@ -1,5 +1,3 @@
-using System.Collections.Specialized;
-using NUnit.Framework.Internal;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -15,7 +13,7 @@ public class EnemyScript : MonoBehaviour
     public int damage;
 
     /*  Miscellaneous variables */
-    private int currentWaypointIndex = 0;
+    private int currentWaypointIndex;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,23 +22,36 @@ public class EnemyScript : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         RB.bodyType = RigidbodyType2D.Dynamic;
 
-        transform.position = wayPoints[0].position; //First waypoint initialize
+        if (wayPoints == null || wayPoints.Length == 0)
+        {
+            Debug.LogError("Waypoints not assigned to enemy");
+            return;
+        }
+
+        // transform.position = wayPoints[0].position; //First waypoint initialize
     }
 
     void FixedUpdate()
     {
-        if (currentWaypointIndex < wayPoints.Length)
+        if (wayPoints != null && currentWaypointIndex < wayPoints.Length)
         {
             MoveToWayPoint();
         }
     }
 
+    public void SetWaypoints(Transform[] newWayPoints)
+    {
+        //I need to divide these waypoints by the enemyType/ locations 
+        wayPoints = newWayPoints;
+        currentWaypointIndex = 0;
+    }
+
     void MoveToWayPoint()
     {
-        Vector2 targetPosition = wayPoints[currentWaypointIndex].position;
-        //Speed will be tweaked to 
-        Vector2 newPosition = Vector2.MoveTowards(RB.position, targetPosition, speed * Time.fixedDeltaTime);   
+        if (wayPoints == null || wayPoints.Length == 0) return;
 
+        Vector2 targetPosition = wayPoints[currentWaypointIndex].position;
+        Vector2 newPosition = Vector2.MoveTowards(RB.position, targetPosition, speed * Time.fixedDeltaTime);   
         RB.MovePosition(newPosition);
 
         if (Vector2.Distance(RB.position, targetPosition) < 0.1f)
@@ -53,7 +64,13 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("HomeBase"))
         {
-            collision.gameObject.GetComponent<HomeBase>().TakeDamage(damage);
+            HomeBase baseScript = collision.gameObject.GetComponent<HomeBase>();
+
+            if (baseScript != null)
+            {
+                baseScript.TakeDamage(damage);
+            }
+            
             Destroy(gameObject);
         }   
     }
