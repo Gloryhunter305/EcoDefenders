@@ -38,13 +38,15 @@ public class EnemySpawner : MonoBehaviour
         foreach (EnemySpawnData enemyData in wave.enemiesToSpawn)
         {
             
-            for (int i = 0; i < enemyData.count; i++)
-            {
+            // for (int i = 0; i < enemyData.count; i++)
+            // {
                 GameObject enemy = Instantiate(enemyData.enemyPrefab, enemyData.spawnPoint.position, Quaternion.identity);
+                
                 EnemyScript enemyScript = enemy.GetComponent<EnemyScript>();
+
                 enemyScript.SetWaypoints(wayPoints);
                 yield return new WaitForSeconds(spawnInterval);
-            }
+            //}
         }
         waveManager.AdvancetoNextWave();
     }
