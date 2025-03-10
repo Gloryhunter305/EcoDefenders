@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 116830825}
   m_Layer: 0
-  m_Name: Waypoint (2)
+  m_Name: CoalWayPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,7 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 658801976}
   m_Layer: 0
-  m_Name: Waypoint (1)
+  m_Name: CoalWayPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,7 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 860420438}
   m_Layer: 0
-  m_Name: Waypoint
+  m_Name: CoalWayPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

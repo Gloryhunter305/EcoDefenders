@@ -9,6 +9,9 @@ TagManager:
   - TextBox
   - HomeBase
   - Enemy
+  - PowerPlant
+  - Field
+  - River
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Path
   - 
   - 
   - 

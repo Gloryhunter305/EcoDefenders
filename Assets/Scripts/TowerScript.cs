@@ -4,12 +4,15 @@ public class TowerScript : MonoBehaviour
 {
     private Camera mainCamera;
     private Vector3 offset;
-    private bool isDragging = false, beenPlaced = false, hoveringOver = false;
+    private bool isDragging = false, beenPlaced = false;
+
+    private LayerMask pathLayer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mainCamera = Camera.main;
+        pathLayer = LayerMask.GetMask("Path");
     }
 
     void Update()
@@ -36,36 +39,52 @@ public class TowerScript : MonoBehaviour
         }
         else
         {
-            hoveringOver = true;
             Debug.Log("Tower is placed.");
         }
         
     }
 
-    private void OnMouseExit()
-    {
-        Transform textBox = transform.GetChild(0);
-        if (textBox.gameObject.activeSelf)
-        {
-            textBox.gameObject.SetActive(false);
-        }
-    }
+    // private void OnMouseExit()
+    // {
+    //     Transform textBox = transform.GetChild(0);
+    //     if (textBox.gameObject.activeSelf)
+    //     {
+    //         textBox.gameObject.SetActive(false);
+    //     }
+    // }
 
     private void OnMouseDown()
     {
         if (isDragging)     //Placing the tower down into the scene
         {
-            isDragging = false;
-            beenPlaced = true;
+            if (IsValidPlacement())
+            {
+                isDragging = false;
+                beenPlaced = true;
+            }
+            
         }
-        if (hoveringOver)   //Hovering over tower over stats (information)
-        {
-            Transform textBox = transform.GetChild(0);
 
-            textBox.gameObject.SetActive(true);
-            Debug.Log("Tower is selected");
-        }
+        // if (hoveringOver)   //Hovering over tower over stats (information)
+        // {
+        //     Transform textBox = transform.GetChild(0);
+
+        //     textBox.gameObject.SetActive(true);
+        //     Debug.Log("Tower is selected");
+        // }
     }
+
+    private bool IsValidPlacement()
+    {
+        // Check if the current position is on the path layer
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, 0.5f, pathLayer);
+        return hit == null; // Return true if no collider is found on the path layer
+    }
+
+    // private void ResetTowerPosition()
+    // {
+    //     transform.position = originalPosition; // Uncomment and set originalPosition accordingly
+    // }
 
     private void OnMouseUp()
     {

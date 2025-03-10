@@ -103,8 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc898215a0f26a4fb6c6b9d515dd6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 881406643154693688, guid: 605f858ec77673448b1ad1284e540042, type: 3}
-  spawnPoint: {fileID: 2275784439923797599}
+  wayPoints: []
   spawnInterval: 2
 --- !u!1 &5137666524122636363
 GameObject:

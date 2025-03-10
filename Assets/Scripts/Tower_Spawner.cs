@@ -11,11 +11,13 @@ public class Tower_Spawner : MonoBehaviour
     [SerializeField] private Color originalColor;
     [SerializeField] private Color hoveredColor;
 
+    [SerializeField] private ManagerGame managerGame;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {spriteRenderer = GetComponent<SpriteRenderer>();
+        managerGame = FindFirstObjectByType<ManagerGame>();
         mainCamera = Camera.main;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
     }
 
@@ -63,6 +65,9 @@ public class Tower_Spawner : MonoBehaviour
 
     void OnMouseDown()
     {
-        StartPlacing();
+        if (!managerGame.isWaveActive)
+        {
+            StartPlacing();
+        }
     }
 }

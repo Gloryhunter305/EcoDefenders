@@ -28,26 +28,26 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Wave currentWaveData = waveManager.GetEnemyCountForCurrentWave();
-            StartCoroutine(SpawnEnemies(currentWaveData));
+            //Wave currentWaveData = waveManager.GetEnemyCountForCurrentWave();
+            //StartCoroutine(SpawnEnemies(currentWaveData));
         }
     }
 
-    private IEnumerator SpawnEnemies(Wave wave)
-    {
-        foreach (EnemySpawnData enemyData in wave.enemiesToSpawn)
-        {
+    //private IEnumerator SpawnEnemies(Wave wave)
+    //{
+        // foreach (EnemySpawnData enemyData in wave.enemiesToSpawn)
+        // {
             
-            // for (int i = 0; i < enemyData.count; i++)
-            // {
-                GameObject enemy = Instantiate(enemyData.enemyPrefab, enemyData.spawnPoint.position, Quaternion.identity);
+        //     for (int i = 0; i < enemyData.count; i++)
+        //     {
+        //         GameObject enemy = Instantiate(enemyData.enemyPrefab, enemyData.spawnPoint.position, Quaternion.identity);
                 
-                EnemyScript enemyScript = enemy.GetComponent<EnemyScript>();
+        //         EnemyScript enemyScript = enemy.GetComponent<EnemyScript>();
 
-                enemyScript.SetWaypoints(wayPoints);
-                yield return new WaitForSeconds(spawnInterval);
-            //}
-        }
-        waveManager.AdvancetoNextWave();
-    }
+        //         enemyScript.SetWaypoints(wayPoints);
+        //         yield return new WaitForSeconds(spawnInterval);
+        //     }
+        // }
+        //waveManager.AdvancetoNextWave();
+    //}
 }
