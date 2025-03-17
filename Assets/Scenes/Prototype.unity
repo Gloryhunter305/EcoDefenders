@@ -2329,7 +2329,7 @@ GameObject:
   - component: {fileID: 1374169071}
   - component: {fileID: 1374169070}
   - component: {fileID: 1374169069}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2366,7 +2366,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2397,7 +2397,7 @@ MonoBehaviour:
   objectToSpawn: {fileID: 8870811423019649851, guid: 3cd82a17f5875bc4a82ebf166c9e5a8c, type: 3}
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   hoveredColor: {r: 1, g: 0.6392157, b: 0, a: 1}
-  managerGame: {fileID: 0}
+  managerGame: {fileID: 1293171084}
 --- !u!212 &1374169071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2648,7 +2648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0045776367, y: -0.00033569336}
+  m_AnchoredPosition: {x: 0.00390625, y: 0}
   m_SizeDelta: {x: 1831.1, y: 1029.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1433590847
@@ -2760,7 +2760,7 @@ MonoBehaviour:
   objectToSpawn: {fileID: 4923215034764884558, guid: f0cdfd151afecf54fbefb635a9b794ab, type: 3}
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   hoveredColor: {r: 0.59607846, g: 0.91764706, b: 1, a: 1}
-  managerGame: {fileID: 0}
+  managerGame: {fileID: 1293171084}
 --- !u!212 &1459877251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2861,7 +2861,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -3332,7 +3332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0045776367, y: -0.00033569336}
+  m_AnchoredPosition: {x: 0.00390625, y: 0}
   m_SizeDelta: {x: 1831.1, y: 1029.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665385091

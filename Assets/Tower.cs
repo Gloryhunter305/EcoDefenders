@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -8,6 +7,7 @@ public class Tower : MonoBehaviour
     public float rotationSpeed = 5f;
     public float visionRange = 5f;
     [SerializeField] private CircleCollider2D visionCircle;
+    public GameObject towerRadius;
 
     [Header("Shooting")]
     public GameObject bulletPrefab;
@@ -16,21 +16,26 @@ public class Tower : MonoBehaviour
     private float fireCooldown = 0f;
 
     private List<Transform> enemiesInRange = new List<Transform>();
-
+    private TowerScript towerScript;
+    
     public void Start()
     {
+        towerScript = GetComponent<TowerScript>();
         visionCircle = GetComponent<CircleCollider2D>();
-        visionCircle.radius = visionRange; // Set the radius   
     }
     void Update()
     {
-        UpdateTarget();
-
-        if (target != null)
+        if (towerScript.beenPlaced)
         {
-            RotateTowardsTarget();
-            ShootingMechanic();
-        }
+            visionCircle.radius = visionRange; // Set the radius 
+            UpdateTarget();
+
+            if (target != null)
+            {
+                RotateTowardsTarget();
+                ShootingMechanic();
+            }
+        } 
     }
 
     void UpdateTarget()

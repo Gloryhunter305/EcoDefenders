@@ -3,28 +3,27 @@ using UnityEngine;
 public class TowerScript : MonoBehaviour
 {
     private Camera mainCamera;
-    private Vector3 offset;
-    private bool isDragging = false, beenPlaced = false;
+    private bool isDragging = false; 
+    public bool beenPlaced = false;
 
     private LayerMask pathLayer;
+    [SerializeField] private Tower tower;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        tower = GetComponent<Tower>();
         mainCamera = Camera.main;
         pathLayer = LayerMask.GetMask("Path");
+        tower.towerRadius.transform.localScale = new Vector3(tower.visionRange * 2f, tower.visionRange * 2f, 1f);  
     }
 
     void Update()
     {
         if (isDragging)     //Moving the tower using the mouse
         {
-            // Update the position of the object based on mouse movement
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = mainCamera.WorldToScreenPoint(transform.position).z; // Get the z position
-            Vector3 newPosition = mainCamera.ScreenToWorldPoint(mousePosition) + offset;
-            newPosition.z = 0; // Keep the z position at 0 for 2D
-            transform.position = newPosition; // Set the new position
+            FollowMouse();
         }
     }
 
@@ -33,13 +32,10 @@ public class TowerScript : MonoBehaviour
         if (!beenPlaced)    //When tower is instantiated from tower spawn
         {
             isDragging = true;
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = mainCamera.WorldToScreenPoint(transform.position).z;
-            offset = transform.position - mainCamera.ScreenToWorldPoint(mousePosition);
         }
         else
         {
-            Debug.Log("Tower is placed.");
+            Debug.Log("Mouse entered tower's range");
         }
         
     }
@@ -61,6 +57,7 @@ public class TowerScript : MonoBehaviour
             {
                 isDragging = false;
                 beenPlaced = true;
+                tower.towerRadius.SetActive(false);
             }
             
         }
@@ -93,5 +90,11 @@ public class TowerScript : MonoBehaviour
         // mousePosition.z = 0;
 
         // gameObject.transform.position = new Vector3(worldPosition.x, worldPosition.y, mousePosition.z);
+    }
+
+    private void FollowMouse()
+    {
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 }

@@ -16,13 +16,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interactable
   - Water
   - UI
   - Enemy
   - Path
-  - 
-  - 
+  - Tower
+  - TowerVision
   - 
   - 
   - 
