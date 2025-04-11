@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public Transform target;
+    [Header("Tower Components")]
+    public Transform target;    //Closest enemy targetted first
     public float rotationSpeed = 5f;
-    public float visionRange = 5f;
-    [SerializeField] private CircleCollider2D visionCircle;
-    public GameObject towerRadius;
+    public float visionRange;
+    public int storageCost;
 
     [Header("Shooting")]
     public GameObject bulletPrefab;
@@ -15,26 +16,26 @@ public class Tower : MonoBehaviour
     public float fireRate = 1f;
     private float fireCooldown = 0f;
 
-    private List<Transform> enemiesInRange = new List<Transform>();
-    private TowerScript towerScript;
-    
+    [Header("Vision Range")] 
+    [SerializeField] private GameObject rangeCircle;   
+
+    [Header("Wait to be Spawned in Scene")]
+    [SerializeField] private ManagerGame gameManager;
+    [SerializeField] private List<Transform> enemiesInRange = new List<Transform>();
+
     public void Start()
     {
-        towerScript = GetComponent<TowerScript>();
-        visionCircle = GetComponent<CircleCollider2D>();
+        gameManager = FindFirstObjectByType<ManagerGame>();   
+        rangeCircle.transform.localScale = new Vector3(visionRange, visionRange, 1f);  
     }
     void Update()
-    {
-        if (towerScript.beenPlaced)
-        {
-            visionCircle.radius = visionRange; // Set the radius 
-            UpdateTarget();
+    {    
+        UpdateTarget();
 
-            if (target != null)
-            {
-                RotateTowardsTarget();
-                ShootingMechanic();
-            }
+        if (target != null)
+        {
+            RotateTowardsTarget();
+            ShootingMechanic();
         } 
     }
 
@@ -106,7 +107,6 @@ public class Tower : MonoBehaviour
             enemiesInRange.Remove(collision.transform);
         }
     }
-
 
     private void OnDrawGizmos()
     {

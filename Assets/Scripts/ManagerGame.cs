@@ -109,10 +109,15 @@ public class ManagerGame : MonoBehaviour
     {
         foreach (SubMeters subMeter in subMeters)
         {
-                if (subMeter != null)
-                {
-                    subMeter.ResetSubMeter();
-                }
+            if (subMeter != null)
+            {
+                subMeter.ResetSubMeter();
+            }
         }
+    }
+
+    public void spawnTowerInScene()
+    {
+        Debug.Log("This program is activated.");
     }
 }
