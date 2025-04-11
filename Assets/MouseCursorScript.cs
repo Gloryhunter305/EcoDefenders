@@ -53,7 +53,6 @@ public class MouseCursorScript : MonoBehaviour
             else if (Input.GetMouseButtonDown(1))   //Right Click to Cancel / Destory tower (isPlacing == true)
             {
                 CancelObjectFollowing(objectFollowingMouse); 
-                StorageManager.Instance.PrintStorage();
             }   
         }
     }

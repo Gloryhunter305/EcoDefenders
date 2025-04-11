@@ -6,18 +6,19 @@ public class Tower : MonoBehaviour
 {
     [Header("Tower Components")]
     public Transform target;    //Closest enemy targetted first
-    public float rotationSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 360f;
     public float visionRange;
-    public int storageCost;
 
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform firePoint;
+    [SerializeField] private int damage = 1;
     public float fireRate = 1f;
     private float fireCooldown = 0f;
 
     [Header("Vision Range")] 
     [SerializeField] private GameObject rangeCircle;   
+    public GameObject towerNozzle;
 
     [Header("Wait to be Spawned in Scene")]
     [SerializeField] private ManagerGame gameManager;
@@ -66,12 +67,17 @@ public class Tower : MonoBehaviour
 
     void RotateTowardsTarget()
     {
-        Vector2 direction = target.position - transform.position;
+        if (target == null) return;
+
+        // Get direction from the nozzle to the target
+        Vector2 direction = target.position - towerNozzle.transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        Quaternion targetRotation = Quaternion.Euler(0,0, angle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);   
-    }
+        Quaternion targetRotation = Quaternion.Euler(0, 0, angle - 90f); // Still adding the angle offset
+
+        // Smoothly rotate nozzle toward target at rotationSpeed degrees per second
+        towerNozzle.transform.rotation = Quaternion.RotateTowards(towerNozzle.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }   
 
     void ShootingMechanic()
     {
@@ -87,8 +93,11 @@ public class Tower : MonoBehaviour
     {
         if (bulletPrefab != null && firePoint != null)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.GetComponent<BulletScript>().SetTarget(target);
+            GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            BulletScript bullet = bulletObj.GetComponent<BulletScript>();
+
+            bullet.SetTarget(target);
+            bullet.damage = damage;
         }
     }
 

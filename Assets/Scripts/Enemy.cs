@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void DoDamage()
+    public void DoDamage()      //Does Damage to Submeters
     {
         SubMeters subMeter = null;
 
@@ -89,7 +89,6 @@ public class Enemy : MonoBehaviour
                 subMeter = GameObject.FindGameObjectWithTag("River").GetComponent<SubMeters>();
                 break;
         }
-        //Debug.Log( "Enemy is doing 1 damage to " + enemyType);
         if (subMeter != null)
         {
             subMeter.HitByEnemy();

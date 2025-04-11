@@ -61,7 +61,6 @@ public class Tower_Spawner : MonoBehaviour
         // // Check if the position is valid
         if (OnTopOfPath(position))
         {
-            managerGame.spawnTowerInScene();
             Tower namedTower = objectToSpawn.GetComponent<Tower>();
             if (namedTower != null)
             {

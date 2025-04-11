@@ -3,7 +3,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public float bulletSpeed = 10f;
-    
+    public int damage = 1;
     private Transform target;
 
     public void SetTarget(Transform newTarget)
@@ -31,7 +31,7 @@ public class BulletScript : MonoBehaviour
 
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(1);
+                enemyHealth.TakeDamage(damage);
                 Destroy(gameObject);
             }
         }

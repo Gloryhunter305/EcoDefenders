@@ -5,7 +5,7 @@ public class StorageManager : MonoBehaviour
 {
     public static StorageManager Instance;
 
-    public int maxStorage = 20;
+    public int maxStorage = 5;
     private int currentStorage;
 
     private void Awake()
@@ -29,14 +29,19 @@ public class StorageManager : MonoBehaviour
         Debug.Log($"Storage used: {currentStorage}/{maxStorage}");
     }
 
-    public void PrintStorage()
+    public int getCurrentStorage()
     {
-        Debug.Log("Current Storage: " + currentStorage);
+        return currentStorage;
     }
 
     public void RemoveStorage(int storageCost)
     {
         currentStorage -= storageCost;
         currentStorage = Mathf.Max(currentStorage, 0);
+    }
+
+    public void IncreaseMaxStorage(int increase)
+    {
+        maxStorage += increase;
     }
 }
