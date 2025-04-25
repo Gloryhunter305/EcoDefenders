@@ -7,6 +7,8 @@ public class MouseCursorScript : MonoBehaviour
     private bool isPlacing = false;
     private bool onTopOfTower = false;
 
+    public Camera towerCamera;
+
     //Mouse is always checking if mouse is on enemy's path
     [SerializeField] private LayerMask pathLayer;
 
@@ -15,7 +17,7 @@ public class MouseCursorScript : MonoBehaviour
         if (objectFollowingMouse != null)
         {
             // Follow the mouse
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mouseWorld = towerCamera.ScreenToWorldPoint(Input.mousePosition);
             mouseWorld.z = 0f; // 2D only
             objectFollowingMouse.transform.position = mouseWorld;
 
@@ -100,7 +102,6 @@ public class MouseCursorScript : MonoBehaviour
                     //Debug.Log($"Overlapping with: {results[i].gameObject.name}");
                     isOverlapping = true;
 
-                    // ✅ Optional: Draw a line to visualize
                     Debug.DrawLine(col.transform.position, results[i].transform.position, Color.red, 0.1f);
                 }
             }

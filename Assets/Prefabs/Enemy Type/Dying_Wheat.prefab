@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
-  speed: 15
+  speed: 5
   enemyType: 1
   path:
   - {fileID: 0}

@@ -35,6 +35,8 @@ public class Tower : MonoBehaviour
 
         if (target != null)
         {
+            SpriteRenderer disableCircle = rangeCircle.GetComponent<SpriteRenderer>();
+            disableCircle.enabled = false;
             RotateTowardsTarget();
             ShootingMechanic();
         } 

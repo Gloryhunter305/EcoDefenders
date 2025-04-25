@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5934307616044373813}
   - component: {fileID: 5178344918363167605}
   m_Layer: 6
-  m_Name: Circle
+  m_Name: Water_Trash
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

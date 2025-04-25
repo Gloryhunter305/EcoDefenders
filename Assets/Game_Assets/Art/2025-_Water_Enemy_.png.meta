@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -125,35 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 2025-_Water_Enemy__0
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 1139
-        width: 140
-        height: 144
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b97dcaf0fde9b5c0800000000000000
-      internalID: -4199063558290572874
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: 2025-_Water_Enemy__1
       rect:
         serializedVersion: 2
-        x: 577
-        y: 811
-        width: 517
-        height: 483
+        x: 578
+        y: 812
+        width: 515
+        height: 481
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,77 +146,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: 2025-_Water_Enemy__2
-      rect:
-        serializedVersion: 2
-        x: 1104
-        y: 1144
-        width: 62
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4afce325bc55dfb10800000000000000
-      internalID: 2016862539878420388
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 2025-_Water_Enemy__3
-      rect:
-        serializedVersion: 2
-        x: 527
-        y: 862
-        width: 49
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: accc2961877c9b310800000000000000
-      internalID: 1421386476000824522
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 2025-_Water_Enemy__4
-      rect:
-        serializedVersion: 2
-        x: 1128
-        y: 816
-        width: 155
-        height: 155
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d2924cca0bcd634c0800000000000000
-      internalID: -4308013342162409171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5b3597deafdba7e4282476db6386089c
     internalID: 0
     vertices: []
     indices: 

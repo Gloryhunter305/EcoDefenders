@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
-using UnityEngine.Rendering;
 
 public class SustainabilityMeter : MonoBehaviour
 {
@@ -10,6 +8,7 @@ public class SustainabilityMeter : MonoBehaviour
     private int currentHealth;
 
     public Image sustainabilityImage;
+    public Image sustainabilityTracker;
     public GameObject gameOverPanel;
     public GameObject victoryPanel;
 
@@ -37,6 +36,7 @@ public class SustainabilityMeter : MonoBehaviour
         if (sustainabilityImage != null)
         {
             sustainabilityImage.fillAmount = (float) currentHealth / maxHealth;
+            sustainabilityTracker.fillAmount = (float) currentHealth / maxHealth;
         }
     }
 
