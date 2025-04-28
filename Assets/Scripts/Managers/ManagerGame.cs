@@ -187,6 +187,7 @@ public class ManagerGame : MonoBehaviour
 
     private void GettingReadyForNextWave()
     {
+        StorageManager storageManager = FindFirstObjectByType<StorageManager>();
         isWaveActive = false;
         towerCamera.enabled = true;     //Make sure that it switches to towerCamera to display tower panel
         gameCamera.enabled = false;
@@ -194,7 +195,7 @@ public class ManagerGame : MonoBehaviour
         canvases[1].SetActive(false);   //Game UI
 
         
-        StorageManager.Instance.IncreaseMaxStorage(1);  //Increasing Max Storage
+        storageManager.IncreaseMaxStorage(1);  //Increasing Max Storage
         ResetSubMeters();
         currentWaveIndex++;
         if (currentWaveIndex < waves.Length)
@@ -220,17 +221,16 @@ public class ManagerGame : MonoBehaviour
 
     public void SetGamePhase(GamePhase phase)
     {
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
         currentPhase = phase;
 
         if (phase == GamePhase.Building)
         {
-            AudioManager.Instance.PlayMusic(AudioManager.Instance.buildBackgroundMusic);
-            AudioManager.Instance.allowSFX = false;
+            audioManager.PlayMusic(audioManager.buildBackgroundMusic);
         }
         else if (phase == GamePhase.Playing)
         {
-            AudioManager.Instance.PlayMusic(AudioManager.Instance.waveBackgroundMusic);
-            AudioManager.Instance.allowSFX = true;
+            audioManager.PlayMusic(audioManager.waveBackgroundMusic);
         }
     }
 

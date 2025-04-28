@@ -40,9 +40,11 @@ public class MouseCursorScript : MonoBehaviour
             {
                 if (OnTopOfPath(mouseWorld) && !onTopOfTower)       //CanPlace()
                 {
-                    if (StorageManager.Instance.CanPlace(headTower.storageCost))
+                    StorageManager storageManager = FindFirstObjectByType<StorageManager>();
+
+                    if (storageManager.CanPlace(headTower.storageCost))
                     {
-                        StorageManager.Instance.AddStorage(headTower.storageCost);
+                        storageManager.AddStorage(headTower.storageCost);
                         objectFollowingMouse = null;    //Neccesary code to make sure object is removed from mouse's code
                         isPlacing = false;      //Gameobject has been placed
                     }

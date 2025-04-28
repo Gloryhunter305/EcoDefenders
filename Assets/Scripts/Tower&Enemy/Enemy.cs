@@ -97,16 +97,17 @@ public class Enemy : MonoBehaviour
 
     private void Die()      //Let's make this function useful by adding the sound effects here.
     {
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
         switch (enemyType)
         {
             case EnemyType.PowerPlant:
-                AudioManager.Instance.PlaySFX(SFXTypes.CO2death);
+                audioManager.PlaySFX(SFXTypes.CO2death);
                 break;
             case EnemyType.River:
-                AudioManager.Instance.PlaySFX(SFXTypes.WATERdeath);
+                audioManager.PlaySFX(SFXTypes.WATERdeath);
                 break;
             case EnemyType.Field:
-                AudioManager.Instance.PlaySFX(SFXTypes.WHEATdeath);
+                audioManager.PlaySFX(SFXTypes.WHEATdeath);
                 break;
 
         }

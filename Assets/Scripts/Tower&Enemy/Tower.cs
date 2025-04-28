@@ -94,6 +94,7 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
+        AudioManager audioManager = FindFirstObjectByType<AudioManager>();
         if (bulletPrefab != null && firePoint != null)
         {
             GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -103,10 +104,10 @@ public class Tower : MonoBehaviour
             switch(towerType)
             {
                 case TowerType.Vacuum:
-                    AudioManager.Instance.PlaySFX(SFXTypes.VACUUMshoot);
+                    audioManager.PlaySFX(SFXTypes.VACUUMshoot);
                     break;
                 case TowerType.Sniper:
-                    AudioManager.Instance.PlaySFX(SFXTypes.SNIPERshoot);
+                    audioManager.PlaySFX(SFXTypes.SNIPERshoot);
                     break;
             }
 
