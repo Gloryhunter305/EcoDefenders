@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using static ManagerGame;
 
 public class Tower : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour
     public Transform target;    //Closest enemy targetted first
     [SerializeField] private float rotationSpeed = 360f;
     public float visionRange;
+    public TowerType towerType;
 
     [Header("Shooting")]
     public GameObject bulletPrefab;
@@ -98,6 +99,17 @@ public class Tower : MonoBehaviour
             GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             BulletScript bullet = bulletObj.GetComponent<BulletScript>();
 
+            //Audio effect for towerType here.
+            switch(towerType)
+            {
+                case TowerType.Vacuum:
+                    AudioManager.Instance.PlaySFX(SFXTypes.VACUUMshoot);
+                    break;
+                case TowerType.Sniper:
+                    AudioManager.Instance.PlaySFX(SFXTypes.SNIPERshoot);
+                    break;
+            }
+
             bullet.SetTarget(target);
             bullet.damage = damage;
         }
@@ -117,6 +129,13 @@ public class Tower : MonoBehaviour
         {
             enemiesInRange.Remove(collision.transform);
         }
+    }
+
+    public enum TowerType       //For sound effects for towers
+    {
+        Vacuum,
+        Sniper
+        //May add more towers in the future...
     }
 
     private void OnDrawGizmos()

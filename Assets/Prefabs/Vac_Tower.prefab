@@ -372,7 +372,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3615919343285383372, guid: e952cc1e65a72ed4da21a45d49be7d8f, type: 3}
   firePoint: {fileID: 6517620058570859468}
   damage: 1
-  fireRate: 0.75
+  fireRate: 1
   rangeCircle: {fileID: 8702577199003271885}
   towerNozzle: {fileID: 3121846497525008821}
   gameManager: {fileID: 0}

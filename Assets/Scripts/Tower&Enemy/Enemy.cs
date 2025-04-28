@@ -1,7 +1,6 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Analytics;
+using static ManagerGame;
 
 public class Enemy : MonoBehaviour
 {
@@ -47,8 +46,9 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+                //If the gameObejct makes its way to the LAB
             DoDamage();
-            DestroyEnemy();
+            DestroyItself();
         }
     }
 
@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage)      //Bullet Script damages gameObject
     {
         currentHealth -= damage;
 
@@ -95,12 +95,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Die()
+    private void Die()      //Let's make this function useful by adding the sound effects here.
     {
-        DestroyEnemy();
+        switch (enemyType)
+        {
+            case EnemyType.PowerPlant:
+                AudioManager.Instance.PlaySFX(SFXTypes.CO2death);
+                break;
+            case EnemyType.River:
+                AudioManager.Instance.PlaySFX(SFXTypes.WATERdeath);
+                break;
+            case EnemyType.Field:
+                AudioManager.Instance.PlaySFX(SFXTypes.WHEATdeath);
+                break;
+
+        }
+        DestroyItself();
     }
 
-    public void DestroyEnemy()
+    public void DestroyItself()
     {
         OnEnemyDestroyed?.Invoke();
         Destroy(gameObject);

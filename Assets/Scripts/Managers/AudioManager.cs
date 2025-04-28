@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -13,8 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip waveBackgroundMusic;
 
     [Header("Sound Effects")]
-    public AudioClip shootSFX;
-    public AudioClip enemyDeathSFX;
+    public AudioClip[] soundEffects;
 
     public bool allowSFX = false;
 
@@ -45,11 +45,17 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(ManagerGame.SFXTypes sfx)       //ManagerGame holds the soundEffects
     {
-        if (allowSFX && clip != null)
+        int index = (int) sfx;
+        
+        if (index >= 0 && index < soundEffects.Length)
         {
-            sfxSource.PlayOneShot(clip);
+            sfxSource.PlayOneShot(soundEffects[index]);
+        }
+        else
+        {
+            Debug.LogWarning("No SFX, index out of range" + sfx);
         }
     }
 }

@@ -780,8 +780,17 @@ MonoBehaviour:
   sfxSource: {fileID: 108753671}
   buildBackgroundMusic: {fileID: 8300000, guid: d170359bc4bd0dc4891d25aa7a57494c, type: 3}
   waveBackgroundMusic: {fileID: 8300000, guid: d6ef7b072b296e54bb415269b1735504, type: 3}
-  shootSFX: {fileID: 0}
-  enemyDeathSFX: {fileID: 0}
+  soundEffects:
+  - {fileID: 8300000, guid: 482d816495d240744b642302b60099c0, type: 3}
+  - {fileID: 8300000, guid: e0f61081d06a520418b5fd0d062ee629, type: 3}
+  - {fileID: 8300000, guid: d6d7f1ff7cc4d9543b6780a94d8f6e9b, type: 3}
+  - {fileID: 8300000, guid: 44f226b7d8a7ada4582036bea51118de, type: 3}
+  - {fileID: 8300000, guid: cf0d79a1d249cf84caf0b7d9ef3b0494, type: 3}
+  - {fileID: 8300000, guid: 5c4c056a67bd67142b981cc8e84a9c0f, type: 3}
+  - {fileID: 8300000, guid: b05cad2c89fdb1943a29c49690401bfc, type: 3}
+  - {fileID: 8300000, guid: 179bb178dacd90848b960bd17a94b189, type: 3}
+  - {fileID: 8300000, guid: 27fc85cdc9901ec4f8c05a62a2e4abcd, type: 3}
+  - {fileID: 8300000, guid: 01a1d1dba9cb08c449f742efd59c3052, type: 3}
   allowSFX: 0
 --- !u!82 &108753671
 AudioSource:
@@ -2280,8 +2289,8 @@ Transform:
   m_GameObject: {fileID: 354823742}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38, y: 13, z: 0}
-  m_LocalScale: {x: 14, y: 24, z: 1}
+  m_LocalPosition: {x: 37.875, y: 13, z: 0}
+  m_LocalScale: {x: 13.7494, y: 24, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 367365981}
@@ -2329,9 +2338,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.40000004, g: 0.68235296, b: 0.7137255, a: 1}
+  m_Color: {r: 0.2509804, g: 0.54901963, b: 0.58431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3509,9 +3518,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.4, g: 0.68235296, b: 0.7137255, a: 1}
+  m_Color: {r: 0.2509804, g: 0.54901963, b: 0.58431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5467,8 +5476,8 @@ Transform:
   m_GameObject: {fileID: 1085395217}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.875, y: 22.375, z: 0}
-  m_LocalScale: {x: 20, y: 5.2500005, z: 1}
+  m_LocalPosition: {x: 34.625, y: 22.375, z: 0}
+  m_LocalScale: {x: 20.000925, y: 5.2500005, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 367365981}
@@ -5516,9 +5525,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.4, g: 0.68235296, b: 0.7137255, a: 1}
+  m_Color: {r: 0.2509804, g: 0.54901963, b: 0.58431375, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8094,7 +8103,7 @@ MonoBehaviour:
     enemyType2Count: 0
     enemyType3Count: 0
     waveInterval: 1
-  - enemyType1Count: 6
+  - enemyType1Count: 3
     enemyType2Count: 3
     enemyType3Count: 0
     waveInterval: 1

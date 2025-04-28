@@ -1260,6 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   sustainabilityImage: {fileID: 1420935962}
+  sustainabilityTracker: {fileID: 0}
   gameOverPanel: {fileID: 1432245879}
   victoryPanel: {fileID: 1665385089}
 --- !u!1 &1060076527
@@ -2171,27 +2172,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTypes:
   - enemyPrefab: {fileID: 9054330619944350254, guid: dd57f88af0a0c4d4482d8dfcf2b8e1a6, type: 3}
-    path:
-    - {fileID: 1951056985}
-    - {fileID: 1914246204}
-    - {fileID: 2048024804}
     spawnInterval: 2
+    spawnRoutes: []
   - enemyPrefab: {fileID: 5949251725019864558, guid: af986bd6b46a694429f088f707736808, type: 3}
-    path:
-    - {fileID: 821587462}
-    - {fileID: 1541814857}
-    - {fileID: 495338546}
     spawnInterval: 1
+    spawnRoutes: []
   - enemyPrefab: {fileID: 8331064719502719437, guid: 7dd6bf7e4115f384e8f7a27c6e65689f, type: 3}
-    path:
-    - {fileID: 1996708289}
-    - {fileID: 94197718}
-    - {fileID: 1387923681}
     spawnInterval: 3
-  spawnPoints:
-  - {fileID: 254339465}
-  - {fileID: 769822825}
-  - {fileID: 400615012}
+    spawnRoutes: []
   waves:
   - enemyType1Count: 6
     enemyType2Count: 0
@@ -2213,8 +2201,14 @@ MonoBehaviour:
   - {fileID: 1593552661}
   - {fileID: 2045151451}
   - {fileID: 253055729}
-  currentWaveIndex: 0
+  nextWaveText: {fileID: 0}
+  enemiesInWavesText: {fileID: 0}
   isWaveActive: 0
+  gameCamera: {fileID: 0}
+  towerCamera: {fileID: 0}
+  canvases: []
+  riverSprites: []
+  currentPhase: 0
 --- !u!4 &1293171085
 Transform:
   m_ObjectHideFlags: 0
@@ -2394,10 +2388,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34bd89ff8abd1b4a8c7d223b7bc7d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 8870811423019649851, guid: 3cd82a17f5875bc4a82ebf166c9e5a8c, type: 3}
-  originalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoveredColor: {r: 1, g: 0.6392157, b: 0, a: 1}
+  objectToSpawn: {fileID: 4104274459612613240, guid: e039ac0acfdbf404a82b86fbc8d0ab4c, type: 3}
   managerGame: {fileID: 1293171084}
+  pathLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!212 &1374169071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2757,10 +2752,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34bd89ff8abd1b4a8c7d223b7bc7d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 4923215034764884558, guid: f0cdfd151afecf54fbefb635a9b794ab, type: 3}
-  originalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoveredColor: {r: 0.59607846, g: 0.91764706, b: 1, a: 1}
+  objectToSpawn: {fileID: 920529716786010099, guid: 5b252220d27582b43b82b5dddacca762, type: 3}
   managerGame: {fileID: 1293171084}
+  pathLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!212 &1459877251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4038,24 +4034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863e5a1c8a2544445a2de19553d6c156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 9054330619944350254, guid: dd57f88af0a0c4d4482d8dfcf2b8e1a6, type: 3}
-  spawnPoints:
-  - {fileID: 254339465}
-  - {fileID: 769822825}
-  - {fileID: 400615012}
-  spawnInterval: 2
-  wayPointsForSpawnPoint1:
-  - {fileID: 1951056985}
-  - {fileID: 1914246204}
-  - {fileID: 2048024804}
-  wayPointsForSpawnPoint2:
-  - {fileID: 821587462}
-  - {fileID: 1541814857}
-  - {fileID: 495338546}
-  wayPointsForSpawnPoint3:
-  - {fileID: 1996708289}
-  - {fileID: 94197718}
-  - {fileID: 1387923681}
 --- !u!4 &2096334327
 Transform:
   m_ObjectHideFlags: 0

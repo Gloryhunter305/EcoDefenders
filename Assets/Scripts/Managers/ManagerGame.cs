@@ -124,6 +124,7 @@ public class ManagerGame : MonoBehaviour
         }
     
         yield return new WaitUntil(() => activeEnemies.Count == 0);     //Wait until all enemies are gone from game
+        yield return new WaitForSeconds(2f);    //Wait for two seconds to show user what they lost in the battle
 
         GettingReadyForNextWave();
 
@@ -233,9 +234,24 @@ public class ManagerGame : MonoBehaviour
         }
     }
 
+    /*      Audio Stuff GOES HERE       */
     public enum GamePhase
     {
         Building,
         Playing
+    }
+
+    public enum SFXTypes
+    {
+        CO2damage,
+        CO2death,
+        WATERdamage,
+        WATERdeath,
+        WHEATdamage,
+        WHEATdeath,
+        METERbreak,
+        LABdamage,
+        VACUUMshoot,
+        SNIPERshoot
     }
 }
