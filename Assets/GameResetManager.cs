@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameResetManager : MonoBehaviour
 {
@@ -33,6 +36,9 @@ public class GameResetManager : MonoBehaviour
 
         var meter = FindFirstObjectByType<SustainabilityMeter>();
         if (meter != null)
-            meter.ResetMeter(); // You’ll implement this next
+            meter.ResetMeter(); 
+        var secret = FindFirstObjectByType<SecretInputHandler>();
+            if (secret != null)
+                secret.ResetKonami();
     }
 }

@@ -6,7 +6,6 @@ public class HeadTower : MonoBehaviour
     public SpriteRenderer towerSpirte;
     public Color originalColor;
     public int storageCost;
-
     private MouseCursorScript mouseScript;
 
 

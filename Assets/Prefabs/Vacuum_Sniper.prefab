@@ -229,6 +229,7 @@ MonoBehaviour:
   towerSpirte: {fileID: 8745246006193698673}
   originalColor: {r: 1, g: 1, b: 1, a: 1}
   storageCost: 3
+  towerName: Sniper
 --- !u!1 &5831917279064360384
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +370,7 @@ MonoBehaviour:
   target: {fileID: 0}
   rotationSpeed: 130
   visionRange: 10
+  towerType: 0
   bulletPrefab: {fileID: 3615919343285383372, guid: e952cc1e65a72ed4da21a45d49be7d8f, type: 3}
   firePoint: {fileID: 4704126105947286375}
   damage: 3

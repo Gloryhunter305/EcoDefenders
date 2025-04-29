@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -53,6 +52,7 @@ public class ManagerGame : MonoBehaviour
     [SerializeField] private Sprite[] riverSprites;
 
     public SustainabilityMeter SM;
+    public GameResetManager GM;
 
     //Audio Manager stuff
     public GamePhase currentPhase;
@@ -83,7 +83,7 @@ public class ManagerGame : MonoBehaviour
                 StartCoroutine(SpawnWave(waves[currentWaveIndex]));
             }
         }   
-        else if (currentWaveIndex >= waves.Length)
+        else if (currentWaveIndex >= waves.Length && !SM.wasGameOverFirst())     //Only show Victory if player didn't lost before final wave
         {
             FindAnyObjectByType<SustainabilityMeter>().PlayerWins();
         }
@@ -105,31 +105,52 @@ public class ManagerGame : MonoBehaviour
     private IEnumerator SpawnWave(Wave wave)
     {
         StartingGamePhase();    //Camera transitioning stuff
-
-        // Spawn enemyType1     CO2
-        for (int i = 0; i < wave.enemyType1Count; i++)
+        if (currentWaveIndex > (waves.Length / 2) - 1)
         {
-            SpawnEnemy(0); // Assuming enemyType1 is at index 0 
-            yield return new WaitForSeconds(1f); // Optional delay between spawns
+            int maxCount = Mathf.Max(wave.enemyType1Count, wave.enemyType2Count, wave.enemyType3Count);
+
+            for (int i = 0; i < maxCount; i++)
+            {
+                if (i < wave.enemyType1Count)
+                    SpawnEnemy(0); // CO2
+
+                if (i < wave.enemyType2Count)
+                    SpawnEnemy(1); // Water
+
+                if (i < wave.enemyType3Count)
+                    SpawnEnemy(2); // Wheat
+
+                yield return new WaitForSeconds(.75f); // Adjust this delay if you want faster/slower spawn pacing
+            }
         }
-
-        // Spawn enemyType2     RIVER 
-        for (int i = 0; i < wave.enemyType2Count; i++)
+        else
         {
-            SpawnEnemy(1); // Assuming enemyType2 is at index 1 
-            yield return new WaitForSeconds(1f); // Optional delay between spawns
-        }
+            // Spawn enemyType3     WHEAT
+            for (int i = 0; i < wave.enemyType3Count; i++)
+            {
+                SpawnEnemy(2); // Assuming enemyType3 is at index 2
+                yield return new WaitForSeconds(1f); // Optional delay between spawns
+            }
 
-        // Spawn enemyType3     WHEAT
-        for (int i = 0; i < wave.enemyType3Count; i++)
-        {
-            SpawnEnemy(2); // Assuming enemyType3 is at index 2
-            yield return new WaitForSeconds(1f); // Optional delay between spawns
+            // Spawn enemyType1     CO2
+            for (int i = 0; i < wave.enemyType1Count; i++)
+            {
+                SpawnEnemy(0); // Assuming enemyType1 is at index 0 
+                yield return new WaitForSeconds(1f); // Optional delay between spawns
+            }
+
+            // Spawn enemyType2     RIVER 
+            for (int i = 0; i < wave.enemyType2Count; i++)
+            {
+                SpawnEnemy(1); // Assuming enemyType2 is at index 1 
+                yield return new WaitForSeconds(1f); // Optional delay between spawns
+            }
         }
         yield return new WaitUntil(() => activeEnemies.Count == 0);     //Wait until all enemies are gone from game
 
         if (IsSustainMeterDead())
         {
+            SM.setGameOverFirst(true);
             SM.GameOver();
         }
         else
@@ -162,7 +183,6 @@ public class ManagerGame : MonoBehaviour
 
             Enemy enemyScript = enemy.GetComponent<Enemy>();
             enemyScript.path = route.path;
-            //enemyScript.path = enemyTypes[enemyTypeIndex].path; // Assign the path for this enemy type
             
             enemyScript.OnEnemyDestroyed += () => activeEnemies.Remove(enemy);
             activeEnemies.Add(enemy);   
@@ -237,6 +257,10 @@ public class ManagerGame : MonoBehaviour
         SetGamePhase(GamePhase.Playing);
     }
 
+    public GamePhase GetGamePhase()
+    {
+        return currentPhase;
+    }
     public void SetGamePhase(GamePhase phase)
     {
         AudioManager audioManager = FindFirstObjectByType<AudioManager>();

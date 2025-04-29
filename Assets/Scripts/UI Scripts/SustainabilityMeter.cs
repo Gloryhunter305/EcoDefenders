@@ -12,6 +12,8 @@ public class SustainabilityMeter : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject victoryPanel;
 
+    private bool GameOverFirst = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,6 +49,15 @@ public class SustainabilityMeter : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    public bool wasGameOverFirst()
+    {
+        return GameOverFirst;
+    }
+    public void setGameOverFirst(bool final)
+    {
+        GameOverFirst = final;
+    }
+
     private void ShowVictory()
     {
         victoryPanel.SetActive(true);
@@ -61,13 +72,14 @@ public class SustainabilityMeter : MonoBehaviour
         }
 
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MainScene");
 
     }
 
     public void ResetMeter()
     {
         currentHealth = maxHealth;
+        GameOverFirst = false;
         UpdateSustainabilityUI();
         gameOverPanel.SetActive(false);
         victoryPanel.SetActive(false);
