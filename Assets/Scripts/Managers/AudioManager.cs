@@ -15,8 +15,6 @@ public class AudioManager : MonoBehaviour
     [Header("Sound Effects")]
     public AudioClip[] soundEffects;
 
-    public bool allowSFX = false;
-
     void Start()
     {
         PlayMusic(buildBackgroundMusic);
@@ -44,4 +42,10 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("No SFX, index out of range" + sfx);
         }
     }
+
+    public void ResetAudio()
+    {
+        PlayMusic(buildBackgroundMusic);
+    }
+
 }

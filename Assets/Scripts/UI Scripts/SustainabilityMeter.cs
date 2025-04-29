@@ -21,13 +21,14 @@ public class SustainabilityMeter : MonoBehaviour
         victoryPanel.SetActive(false);
     }
 
+    public int getSustainabilityHealth()
+    {
+        return currentHealth;
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
-        {
-            GameOver();
-        }
         UpdateSustainabilityUI();
     }
 
@@ -40,7 +41,7 @@ public class SustainabilityMeter : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         gameOverPanel.SetActive(true);
         Time.timeScale = 0;
@@ -54,8 +55,22 @@ public class SustainabilityMeter : MonoBehaviour
 
     public void RestartGame()
     {
+        if (GameResetManager.instance != null)
+        {
+            GameResetManager.instance.ResetGame();  // Custom reset method you implement
+        }
+
         Time.timeScale = 1;
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+    public void ResetMeter()
+    {
+        currentHealth = maxHealth;
+        UpdateSustainabilityUI();
+        gameOverPanel.SetActive(false);
+        victoryPanel.SetActive(false);
     }
 
     public void PlayerWins()

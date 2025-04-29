@@ -20,11 +20,14 @@ public class HeadTower : MonoBehaviour
     public void Remove()
     {
         StorageManager storageManager = FindFirstObjectByType<StorageManager>();
-        
+        MouseCursorScript mouseCursor = FindFirstObjectByType<MouseCursorScript>();
+
+
         if (!mouseScript.getTowerState())
         {  //If isPlacing == false, means tower's already placed
             storageManager.RemoveStorage(storageCost);
         }
+        mouseCursor.RemoveTower(gameObject);
         Destroy(gameObject);
     }
 

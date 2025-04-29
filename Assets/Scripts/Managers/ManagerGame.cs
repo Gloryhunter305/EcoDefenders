@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -28,6 +29,7 @@ public class Wave
 }
 public class ManagerGame : MonoBehaviour
 {
+    [Header("Arrays to Initialize")]
     public EnemyType[] enemyTypes;
     public Wave[] waves;
     public SubMeters[] subMeters;
@@ -49,6 +51,8 @@ public class ManagerGame : MonoBehaviour
 
     [Header("Enemy Water Sprites")]
     [SerializeField] private Sprite[] riverSprites;
+
+    public SustainabilityMeter SM;
 
     //Audio Manager stuff
     public GamePhase currentPhase;
@@ -122,10 +126,17 @@ public class ManagerGame : MonoBehaviour
             SpawnEnemy(2); // Assuming enemyType3 is at index 2
             yield return new WaitForSeconds(1f); // Optional delay between spawns
         }
-    
         yield return new WaitUntil(() => activeEnemies.Count == 0);     //Wait until all enemies are gone from game
-        yield return new WaitForSeconds(2f);    //Wait for two seconds to show user what they lost in the battle
 
+        if (IsSustainMeterDead())
+        {
+            SM.GameOver();
+        }
+        else
+        {
+            yield return new WaitForSeconds(2f);    //Wait for two seconds to show user what they lost in the battle
+        }
+          
         GettingReadyForNextWave();
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));  //Press space to start wave
@@ -207,6 +218,13 @@ public class ManagerGame : MonoBehaviour
         SetGamePhase(GamePhase.Building);
     }
 
+    private bool IsSustainMeterDead()
+    {
+        if (SM.getSustainabilityHealth() <= 0) return true;
+        
+        return false;
+    }
+
     private void StartingGamePhase()
     {
         isWaveActive = true;
@@ -232,6 +250,30 @@ public class ManagerGame : MonoBehaviour
         {
             audioManager.PlayMusic(audioManager.waveBackgroundMusic);
         }
+    }
+
+    public void ResetGameState()
+    {
+        currentWaveIndex = 0;
+        isWaveActive = false;
+        activeEnemies.Clear();
+
+        ResetSubMeters();
+        SetGamePhase(GamePhase.Building);
+
+        if (canvases.Length > 0)
+        {
+            foreach (GameObject canvas in canvases)
+                canvas.SetActive(false);
+
+            canvases[0].SetActive(true); // Tower UI first
+        }
+
+        towerCamera.enabled = true;
+        gameCamera.enabled = false;
+
+        UpdateWaveText();
+        UpdateEnemiesInWaveText();
     }
 
     /*      Audio Stuff GOES HERE       */

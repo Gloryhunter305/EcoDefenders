@@ -32,4 +32,11 @@ public class StorageManager : MonoBehaviour
     {
         maxStorage += increase;
     }
+
+    public void ResetStorage()
+    {
+        currentStorage = 0;
+        maxStorage = 5;
+    }
+
 }

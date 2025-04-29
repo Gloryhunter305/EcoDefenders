@@ -1,18 +1,16 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class SubMeters : MonoBehaviour
 {
-    public int maxHealth = 5;
-    [SerializeField] private int currentHealth;
-
-    public string subMeterName;
+    public int maxHealth = 20;
+    [SerializeField] private int currentHealth;     //Current health of submeter
     public SustainabilityMeter sustainabilityMeter;
     public Image meterImage;
-    
 
-    private int hitCount = 0;
+    public Enemy.EnemyType enemyType;
+
+    private bool meterBroken = false;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,23 +19,32 @@ public class SubMeters : MonoBehaviour
         UpdateMeterUI();
     }
 
-    public void TakeDamage(int damage)      //UPDATES UI STUFF
+    public void TakeDamageToMeter(int damage)      //UPDATES UI STUFF
     {
         currentHealth -= damage;
-        //Debug.Log(subMeterName + " has taken 1 damage");
         UpdateMeterUI();
     }
 
     public void HitByEnemy()
     {
-        hitCount++;
-        if (hitCount < 5)   //gameobject exists
+        //Do damage first then check if the sub-meter survives
+        //Take damage assigned by the enemy type
+        switch (enemyType)
         {
-            TakeDamage(1);
+            case Enemy.EnemyType.PowerPlant:
+                TakeDamageToMeter(5);
+                break;
+            case Enemy.EnemyType.River:
+                TakeDamageToMeter(4);
+                break;
+            case Enemy.EnemyType.Field:
+                TakeDamageToMeter(10);
+                break;
         }
 
-        if (hitCount == 5)
+        if (currentHealth <= 0 && !meterBroken)
         {
+            meterBroken = true; 
             BreakSubMeter();
         }
     }
@@ -51,7 +58,7 @@ public class SubMeters : MonoBehaviour
     public void ResetSubMeter()
     {
         currentHealth = maxHealth;
-        hitCount = 0;
+        meterBroken = false;
         meterImage.gameObject.SetActive(true);
         UpdateMeterUI();
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseCursorScript : MonoBehaviour
@@ -11,6 +12,9 @@ public class MouseCursorScript : MonoBehaviour
 
     //Mouse is always checking if mouse is on enemy's path
     [SerializeField] private LayerMask pathLayer;
+
+    //Destroy spawnedTowers
+    public List<GameObject> spawnedTowers = new List<GameObject>();
 
     void Update()
     {
@@ -110,5 +114,28 @@ public class MouseCursorScript : MonoBehaviour
         }
 
         return isOverlapping;
+    }
+
+    //Registering towers into Scene
+    public void RegisterTower(GameObject tower)
+    {
+        spawnedTowers.Add(tower);
+    }
+
+    public void RemoveTower(GameObject tower)   //Used when tower is already placed in Scene
+    {
+        spawnedTowers.Remove(tower);
+    }
+
+    public void ResetScene()
+    {
+        foreach(GameObject tower in spawnedTowers)
+        {
+            if (tower != null)
+            {
+                Destroy(tower);
+            }
         }
+        spawnedTowers.Clear();
+    }
 }
